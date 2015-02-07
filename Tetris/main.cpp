@@ -2,36 +2,11 @@
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	if (ChangeWindowMode(TRUE)) {
-		return 1;
-	}
-
-	if (DxLib_Init()) {
-		return 2;
-	}
-
-	if (SetDrawScreen(DX_SCREEN_BACK)) {
-		return 3;
-	}
-
-	while (ProcessMessage() == 0) {
-		// Preprocess
-		if (ClearDrawScreen()) {
-			break;
-		}
-
-		// Main
-		if (CheckHitKeyAll() == 0) {
-			break;
-		}
+	ChangeWindowMode(TRUE);
+	DxLib_Init();
 
 
-		// Postprocess
-		if (ScreenFlip()) {
-			break;
-		}
-	}
-
+	WaitKey();
 	DxLib_End();
 	return 0;
 }
