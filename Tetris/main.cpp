@@ -1,7 +1,11 @@
 #include <DxLib.h>
 
+#include "field.h"
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+	char KeyBuf[256];
+
 	if (ChangeWindowMode(TRUE)) {
 		return 1;
 	}
@@ -21,7 +25,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		}
 
 		// Main
-		if (CheckHitKeyAll() == 0) {
+		UpdateFiled();
+		DrawField();
+		GetHitKeyStateAll(KeyBuf);
+		if (KeyBuf[KEY_INPUT_C] == 1) {
 			break;
 		}
 
